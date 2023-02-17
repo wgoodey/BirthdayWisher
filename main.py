@@ -1,6 +1,6 @@
 from data import login
+from datetime import datetime
 import smtplib
-import datetime as dt
 import os
 import random
 import csv
@@ -9,8 +9,8 @@ EMAIL = login.email
 PASSWORD = login.password
 LETTERS_DIRECTORY = 'data/letters/'
 PLACEHOLDER = "[NAME]"
-this_month = dt.datetime.now().month
-today = dt.datetime.now().day
+this_month = datetime.now().month
+today = datetime.now().day
 
 try:
     with open("data/birthdays.csv") as file:
@@ -50,4 +50,4 @@ else:
                         connection.login(user=EMAIL, password=PASSWORD)
                         connection.sendmail(from_addr=EMAIL,
                                             to_addrs=contact["email"],
-                                            msg=f"Subject: Happy Birthday\n\n{message}")
+                                            msg=f"To: {contact['email']}\nSubject: Happy Birthday\n\n{message}")
